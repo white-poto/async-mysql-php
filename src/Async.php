@@ -10,10 +10,11 @@ class Async
 {
     protected $links;
 
-    public function attach($connection, $query)
+    public function attach($config, $query)
     {
-        $link = mysqli_connect($connection['host'], $connection['user'], $connection['password'], $connection['database']);
+        $link = mysqli_connect($config['host'], $config['user'], $config['password'], $config['database']);
         $link->query($query, MYSQLI_ASYNC);
+
         array_push($this->links, $link);
     }
 
