@@ -1,0 +1,16 @@
+{
+  "name": "jenner/async-mysql-php",
+  "description": "php mysql async client",
+  "keywords": ["mysql client", "php", "async"],
+  "license": "MIT",
+  "type": "package",
+  "require": {
+    "php": ">=5.3.0",
+    "ext-mysqli": "*"
+  },
+  "autoload": {
+    "psr-0": {
+      "Jenner\\Mysql\\": "./src"
+    }
+  }
+}
