@@ -27,8 +27,10 @@ try{
         ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
         'select * from dd'
     );
+	var_dump($async_mysql);
     $result = $async_mysql->execute();
     var_dump($result);
 }catch (Exception $e){
+var_dump($e);
     echo $e->getMessage();
 }
