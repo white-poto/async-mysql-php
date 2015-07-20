@@ -16,6 +16,9 @@ class Async
     public function attach($config, $query)
     {
         $link = mysqli_connect($config['host'], $config['user'], $config['password'], $config['database']);
+        if($link === false){
+            throw new \RuntimeException(mysqli_error($link), mysqli_errno($link));
+        }
         $link->query($query, MYSQLI_ASYNC);
 
 	    $this->links[] = $link;
@@ -46,8 +49,6 @@ class Async
                     } else{
                         $collect[$i] = $result;
                     }
-                } else {
-                    throw new \RuntimeException(mysqli_error($link), mysqli_errno($link));
                 }
                 $processed++;
             }
