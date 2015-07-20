@@ -41,9 +41,7 @@ class Async
                     if (is_object($result)){
                         $collect[$i] = $result->fetch_assoc();
                         $temp = array();
-                        while ($row = $result->fetch_assoc()) {
-                            $temp[] = $row;
-                        }
+                        while (($row = $result->fetch_assoc()) && $temp[] = $row);
                         $collect[$i] = $temp;
                         mysqli_free_result($result);
                     } else{
