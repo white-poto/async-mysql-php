@@ -1,9 +1,9 @@
 # async-mysql-php
 
-mysql 异步客户端，基于mysqli::poll简单封装 
-当链接mysql出现错误时，会抛出异常 
-当执行sql失败时，仅会在result中相应字段标志为false，不会提示错误信息 
-返回结果的顺序与attach顺序一致 
+mysql 异步客户端，基于mysqli::poll简单封装   
+当链接mysql出现错误时，会抛出异常   
+当执行sql失败时，仅会在result中相应字段标志为false，不会提示错误信息   
+返回结果的顺序与attach顺序一致  
 接口如下： 
 ```php
 try{
