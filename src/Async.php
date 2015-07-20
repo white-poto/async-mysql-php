@@ -21,6 +21,7 @@ class Async
     {
         $collect = array();
 
+        $link_count = count($this->links);
         $processed = 0;
         do {
             $links = $errors = $reject = array();
@@ -30,18 +31,18 @@ class Async
             if (!mysqli_poll($links, $errors, $reject, 1)) {
                 continue;
             }
-            for ($i = 0; $i < count($this->links); $i++) {
+            for ($i = 0; $i < $link_count; $i++) {
                 $link = $this->links[$i];
                 if ($result = $link->reap_async_query()) {
                     $collect[$i] = $result;
                     if (is_object($result))
                         mysqli_free_result($result);
                 } else {
-                    throw new Exception(mysqli_error($link), mysqli_errno($link));
+                    throw new RuntimeException(mysqli_error($link), mysqli_errno($link));
                 }
                 $processed++;
             }
-        } while ($processed < count($this->links));
+        } while ($processed < $link_count);
 
         return $collect;
     }
