@@ -6,6 +6,9 @@
  * Date: 2015/7/20
  * Time: 16:04
  */
+
+namespace Jenner\Mysql;
+
 class Async
 {
     protected $links;
