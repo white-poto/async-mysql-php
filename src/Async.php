@@ -40,7 +40,7 @@ class Async
                 if ($result = $link->reap_async_query()) {
                     if (is_object($result)){
                         mysqli_free_result($result);
-                        $collect[$i] = $result->fetch_row;
+                        $collect[$i] = $result->fetch_row();
                     } else{
                         $collect[$i] = $result;
                     }
