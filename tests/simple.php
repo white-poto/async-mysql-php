@@ -12,19 +12,19 @@ try{
     $async_mysql = new \Jenner\Mysql\Async();
     $async_mysql->attach(
         ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
-        'select * from dd'
+        'select * from stu'
     );
     $async_mysql->attach(
         ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
-        'select * from dd'
+        'select * from stu'
     );
     $async_mysql->attach(
         ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
-        'select * from dd'
+        'select * from stu'
     );
     $async_mysql->attach(
         ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
-        'select * from dd'
+        'select * from stu'
     );
     $result = $async_mysql->execute();
 }catch (Exception $e){
