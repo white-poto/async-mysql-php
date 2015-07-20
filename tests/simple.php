@@ -6,7 +6,7 @@
  * Time: 17:40
  */
 
-require dirname(dirname(__FILE__)) . '/src/Async.php';
+require dirname(dirname(__FILE__)) . '/vendor/autoload.php';
 
 try{
     $async_mysql = new \Jenner\Mysql\Async();
@@ -24,7 +24,7 @@ try{
     );
     $async_mysql->attach(
         ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
-        'select * from stu'
+        'select * from stu limit 0, 3'
     );
     $result = $async_mysql->execute();
     print_r($result);

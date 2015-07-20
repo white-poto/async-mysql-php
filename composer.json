@@ -9,7 +9,7 @@
     "ext-mysqli": "*"
   },
   "autoload": {
-    "psr-0": {
+    "psr-4": {
       "Jenner\\Mysql\\": "./src"
     }
   }
