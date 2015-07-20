@@ -44,7 +44,7 @@ class Async
                         while ($row = $result->fetch_assoc()) {
                             $temp[] = $row;
                         }
-                        $collect[$i] = $row;
+                        $collect[$i] = $temp;
                         mysqli_free_result($result);
                     } else{
                         $collect[$i] = $result;
