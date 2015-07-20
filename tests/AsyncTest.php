@@ -10,25 +10,21 @@ class AsyncTest extends PHPUnit_Framework_TestCase
 {
     public function testExecute(){
         try{
-            $async_mysql = new Async();
+            $async_mysql = new \Jenner\Mysql\Async();
             $async_mysql->attach(
                 ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
                 'select * from dd'
             );
             $async_mysql->attach(
                 ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
-                'select * from dd'
-            );
-            $async_mysql->attach(
-                ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
-                'select * from dd'
-            );
-            $async_mysql->attach(
-                ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
-                'select * from dd'
+                'select * from dd limit 0, 2'
             );
             $result = $async_mysql->execute();
-            var_dump($result);
+            $this->assertEquals($result,
+                [
+                    ['1', '2', '3', '4', '5'],
+                    ['1', '2']
+                ]);
         }catch (Exception $e){
             echo $e->getMessage();
         }
