@@ -22,8 +22,17 @@ class AsyncTest extends PHPUnit_Framework_TestCase
             $result = $async_mysql->execute();
             $this->assertEquals($result,
                 [
-                    ['1', '2', '3', '4', '5'],
-                    ['1', '2']
+                    [
+                        ['id'=>'1', 'name'=>'1'],
+                        ['id'=>'2', 'name'=>'2'],
+                        ['id'=>'3', 'name'=>'3'],
+                        ['id'=>'4', 'name'=>'4'],
+                        ['id'=>'5', 'name'=>'5'],
+                    ],
+                    [
+                        ['id'=>'1', 'name'=>'1'],
+                        ['id'=>'2', 'name'=>'2'],
+                    ]
                 ]);
         }catch (Exception $e){
             echo $e->getMessage();
