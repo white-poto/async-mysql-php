@@ -27,6 +27,7 @@ try{
         'select * from stu'
     );
     $result = $async_mysql->execute();
+    print_r($result);
 }catch (Exception $e){
     echo $e->getMessage();
 }
