@@ -16,14 +16,6 @@ try{
     );
     $async_mysql->attach(
         ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
-        'select * from stu'
-    );
-    $async_mysql->attach(
-        ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
-        'select * from stu'
-    );
-    $async_mysql->attach(
-        ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
         'select * from stu limit 0, 3'
     );
     $result = $async_mysql->execute();
