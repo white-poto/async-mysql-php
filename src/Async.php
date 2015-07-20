@@ -18,7 +18,7 @@ class Async
         $link = mysqli_connect($config['host'], $config['user'], $config['password'], $config['database']);
         $link->query($query, MYSQLI_ASYNC);
 
-	$this->links[] = $link;
+	    $this->links[] = $link;
     }
 
     public function execute()
@@ -39,16 +39,15 @@ class Async
                 $link = $this->links[$i];
                 if ($result = $link->reap_async_query()) {
                     $collect[$i] = $result;
-			var_dump($result);
                     if (is_object($result))
                         mysqli_free_result($result);
                 } else {
-                    throw new RuntimeException(mysqli_error($link), mysqli_errno($link));
+                    throw new \RuntimeException(mysqli_error($link), mysqli_errno($link));
                 }
                 $processed++;
             }
         } while ($processed < $link_count);
         
-return $collect;
+        return $collect;
     }
 }
