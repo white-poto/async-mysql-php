@@ -50,7 +50,7 @@ class Async
                 if ($result = $link->reap_async_query()) {
                     if (is_object($result)){
                         $temp = array();
-                        while (($row = $result->fetch_assoc()) && $temp[] = $row){var_dump($row);};
+                        while (($row = $result->fetch_assoc()) && $temp[] = $row);
                         $collect[$i] = $temp;
                         mysqli_free_result($result);
                     } else{
