@@ -6,6 +6,8 @@
  * Time: 19:17
  */
 require dirname(dirname(__FILE__)) . '/vendor/autoload.php';
+ini_set('memory_limit', 0);
+set_time_limit(0);
 
 echo microtime() . PHP_EOL;
 try{
