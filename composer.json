@@ -1,7 +1,11 @@
 {
   "name": "jenner/async-mysql-php",
   "description": "php mysql async client",
-  "keywords": ["mysql client", "php", "async"],
+  "keywords": [
+    "mysql client",
+    "php",
+    "async"
+  ],
   "license": "MIT",
   "type": "package",
   "require": {

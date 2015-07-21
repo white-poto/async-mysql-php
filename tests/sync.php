@@ -7,10 +7,13 @@
  */
 ini_set('memory_limit', "1024M");
 set_time_limit(0);
+echo microtime() . PHP_EOL;
 
-$mysql = mysqli_connect('127.0.0.1', 'root', '', 'test', '3306');
-$result = $mysql->query("select * from async");
-$result2 = $mysql->query("select * from async");
+for ($i = 0; $i < 10; $i++) {
+    $mysql = mysqli_connect('127.0.0.1', 'root', '', 'test', '3306');
+    $result = $mysql->query("select * from async");
+    $result2 = $mysql->query("select * from async");
+}
 
 
 echo microtime() . PHP_EOL;

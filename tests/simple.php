@@ -8,7 +8,7 @@
 
 require dirname(dirname(__FILE__)) . '/vendor/autoload.php';
 
-try{
+try {
     $async_mysql = new \Jenner\Mysql\Async();
     $async_mysql->attach(
         ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
@@ -20,6 +20,6 @@ try{
     );
     $result = $async_mysql->execute();
     print_r($result);
-}catch (Exception $e){
+} catch (Exception $e) {
     echo $e->getMessage();
 }

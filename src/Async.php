@@ -23,12 +23,12 @@ class Async
             $config['port']
         );
 
-        if($link === false){
+        if ($link === false) {
             throw new \RuntimeException(mysqli_connect_error(), mysqli_connect_errno());
         }
         $link->query($query, MYSQLI_ASYNC);
 
-	    $this->links[] = $link;
+        $this->links[] = $link;
     }
 
     public function execute()
@@ -48,19 +48,19 @@ class Async
             for ($i = 0; $i < $link_count; $i++) {
                 $link = $this->links[$i];
                 if ($result = $link->reap_async_query()) {
-                    if (is_object($result)){
+                    if (is_object($result)) {
                         $temp = array();
-                        while (($row = $result->fetch_assoc()) && $temp[] = $row);
+                        while (($row = $result->fetch_assoc()) && $temp[] = $row) ;
                         $collect[$i] = $temp;
                         mysqli_free_result($result);
-                    } else{
+                    } else {
                         $collect[$i] = $result;
                     }
                 }
                 $processed++;
             }
         } while ($processed < $link_count);
-        
+
         return $collect;
     }
 }
