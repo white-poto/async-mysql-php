@@ -5,6 +5,7 @@
  * Date: 2015/7/21
  * Time: 19:17
  */
+require dirname(dirname(__FILE__)) . '/vendor/autoload.php';
 
 echo microtime() . PHP_EOL;
 try{
