@@ -13,11 +13,11 @@ echo microtime() . PHP_EOL;
 try{
     $async_mysql = new \Jenner\Mysql\Async();
     $async_mysql->attach(
-        ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
+        ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test', 'port'=>3306],
         'select * from async'
     );
     $async_mysql->attach(
-        ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
+        ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test', 'port'=>3306],
         'select * from async'
     );
     $result = $async_mysql->execute();
