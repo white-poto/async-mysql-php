@@ -15,9 +15,16 @@ class Async
 
     public function attach($config, $query)
     {
-        $link = mysqli_connect($config['host'], $config['user'], $config['password'], $config['database'], $config['port']);
+        $link = mysqli_connect(
+            $config['host'],
+            $config['user'],
+            $config['password'],
+            $config['database'],
+            $config['port']
+        );
+
         if($link === false){
-            throw new \RuntimeException(mysqli_error($link), mysqli_errno($link));
+            throw new \RuntimeException(mysqli_connect_error(), mysqli_connect_errno());
         }
         $link->query($query, MYSQLI_ASYNC);
 
