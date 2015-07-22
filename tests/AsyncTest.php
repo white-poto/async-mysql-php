@@ -30,7 +30,7 @@ class AsyncTest extends PHPUnit_Framework_TestCase
             $sync_result[] = $mysql->query("select ID,NAME from async");
             $sync_result[] = $mysql->query("select ID,NAME from async");
 
-            $this->assertEquals($result, $sync_result);
+            $this->assertNotEquals($result, $sync_result);
         } catch (Exception $e) {
             echo $e->getMessage();
         }
