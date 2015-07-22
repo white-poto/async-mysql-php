@@ -17,26 +17,24 @@ class AsyncTest extends PHPUnit_Framework_TestCase
             $async_mysql = new \Jenner\Mysql\Async();
             $async_mysql->attach(
                 ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test', 'port'=>3306],
-                'select ID,NAME from async limit 0, 2'
+                'select ID,NAME from async limit'
             );
             $async_mysql->attach(
                 ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test', 'port'=>3306],
-                'select ID,NAME from async limit 0, 2'
+                'select ID,NAME from async limit'
             );
             $result = $async_mysql->execute();
 
             $sync_result = $temp_result = array();
             $mysql = mysqli_connect('127.0.0.1', 'root', '', 'test', 3306);
-            $temp = $mysql->query("select ID,NAME from async limit 0, 2");
+            $temp = $mysql->query("select ID,NAME from async limit");
             while(($row = $temp->fetch_assoc()) && $temp_result[] = $row);
             $sync_result[] = $temp_result;
             $temp_result = array();
-            $temp = $mysql->query("select ID,NAME from async limit 0, 2");
+            $temp = $mysql->query("select ID,NAME from async limit");
             while(($row = $temp->fetch_assoc()) && $temp_result[] = $row);
             $sync_result[] = $temp_result;
 
-            var_dump($result);
-            var_dump($sync_result);
 
             $this->assertEquals($result, $sync_result);
         } catch (Exception $e) {
