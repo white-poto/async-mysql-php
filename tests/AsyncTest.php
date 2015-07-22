@@ -25,10 +25,14 @@ class AsyncTest extends PHPUnit_Framework_TestCase
             );
             $result = $async_mysql->execute();
 
-            $sync_result = array();
+            $sync_result = $temp_result = array();
             $mysql = mysqli_connect('127.0.0.1', 'root', '', 'test', 3306);
-            $sync_result[] = $mysql->query("select ID,NAME from async limit 0, 2");
-            $sync_result[] = $mysql->query("select ID,NAME from async limit 0, 2");
+            $temp = $mysql->query("select ID,NAME from async limit 0, 2");
+            while(($row = $temp->fetch_row()) && $temp_result[] = $row);
+            $sync_result[] = $temp_result;
+            $temp_result = array();
+            $temp = $mysql->query("select ID,NAME from async limit 0, 2");
+            while(($row = $temp->fetch_row()) && $temp_result[] = $row);
 
             var_dump($result);
             var_dump($sync_result);
