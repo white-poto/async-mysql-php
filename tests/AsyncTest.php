@@ -6,6 +6,9 @@
  * Date: 2015/7/20
  * Time: 16:27
  */
+ini_set('memory_limit', "1024M");
+set_time_limit(0);
+
 class AsyncTest extends PHPUnit_Framework_TestCase
 {
     public function testExecute()
