@@ -13,12 +13,12 @@ class AsyncTest extends PHPUnit_Framework_TestCase
         try {
             $async_mysql = new \Jenner\Mysql\Async();
             $async_mysql->attach(
-                ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
-                'select * from stu'
+                ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test', 'port'=>3306],
+                'select * from async'
             );
             $async_mysql->attach(
-                ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
-                'select * from stu limit 0, 2'
+                ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test', 'port'=>3306],
+                'select * from async limit 0, 2'
             );
             $result = $async_mysql->execute();
             $this->assertEquals($result,
