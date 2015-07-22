@@ -21,11 +21,16 @@ class AsyncTest extends PHPUnit_Framework_TestCase
             );
             $async_mysql->attach(
                 ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test', 'port'=>3306],
-                'select ID,NAME from async limit 0, 2'
+                'select ID,NAME from async'
             );
             $result = $async_mysql->execute();
 
-            print_r($result);
+            $sync_result = array();
+            $mysql = mysqli_connect('127.0.0.1', 'root', '', 'test', 3306);
+            $sync_result[] = $mysql->query("select ID,NAME from async");
+            $sync_result[] = $mysql->query("select ID,NAME from async");
+
+            $this->assertEquals($result, $sync_result);
         } catch (Exception $e) {
             echo $e->getMessage();
         }
