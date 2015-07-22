@@ -33,11 +33,12 @@ class AsyncTest extends PHPUnit_Framework_TestCase
             $temp_result = array();
             $temp = $mysql->query("select ID,NAME from async limit 0, 2");
             while(($row = $temp->fetch_row()) && $temp_result[] = $row);
+            $sync_result[] = $temp_result;
 
             var_dump($result);
             var_dump($sync_result);
 
-            $this->assertNotEquals($result, $sync_result);
+            $this->assertEquals($result, $sync_result);
         } catch (Exception $e) {
             echo $e->getMessage();
         }
