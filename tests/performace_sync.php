@@ -13,6 +13,7 @@ $timer->mark('start');
 for ($i = 0; $i < 10; $i++) {
     $mysql = mysqli_connect('127.0.0.1', 'root', '', 'test', '3306');
     $result = $mysql->query("select * from async");
+    $mysql = mysqli_connect('127.0.0.1', 'root', '', 'test', '3306');
     $result2 = $mysql->query("select * from async");
 }
 $timer->mark("stop");
