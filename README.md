@@ -8,11 +8,11 @@ mysql 异步客户端，基于mysqli::poll简单封装
 try{
     $async_mysql = new \Jenner\Mysql\Async();
     $async_mysql->attach(
-        ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
+        ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test', 'port'=>3306],
         'select * from stu'
     );
     $async_mysql->attach(
-        ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
+        ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test', 'port'=>3306],
         'select * from stu limit 0, 3'
     );
     $result = $async_mysql->execute();
