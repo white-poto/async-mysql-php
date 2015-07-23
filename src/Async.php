@@ -42,11 +42,15 @@ class Async
             foreach ($this->links as $link) {
                 $links[] = $errors[] = $reject[] = $link;
             }
-            if (!mysqli_poll($links, $errors, $reject, 1)) {
+            if (!mysqli_poll($links, $errors, $reject, 0, 1000)) {
                 continue;
             }
             for ($i = 0; $i < $link_count; $i++) {
                 $link = $this->links[$i];
+                if(mysqli_errno($link)){
+                    throw new \RuntimeException(mysqli_error($link), mysqli_errno($link));
+                }
+
                 if ($result = $link->reap_async_query()) {
                     if (is_object($result)) {
                         $temp = array();
