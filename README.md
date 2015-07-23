@@ -1,5 +1,5 @@
 # async-mysql-php
-文档：[http://www.huyanping.cn/php%E5%BC%82%E6%AD%A5%E5%B9%B6%E5%8F%91%E8%AE%BF%E9%97%AEmysql%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/](http://www.huyanping.cn/php%E5%BC%82%E6%AD%A5%E5%B9%B6%E5%8F%91%E8%AE%BF%E9%97%AEmysql%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/)
+文档：[PHP异步并发访问mysql简单实现](http://www.huyanping.cn/php%E5%BC%82%E6%AD%A5%E5%B9%B6%E5%8F%91%E8%AE%BF%E9%97%AEmysql%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/)  
 mysql 异步客户端，基于mysqli::poll简单封装   
 当链接mysql出现错误或SQL执行出错时，会抛出异常      
 返回结果的顺序与attach顺序一致  
