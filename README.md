@@ -29,6 +29,15 @@ try{
 测试结果表明，使用该方式可以明显提升访问mysql的速度，具体提升多少，更多的依赖于业务。
 一般情况下，执行的时间取决于最复杂的一条SQL。
 ```shell
+# 同步
+[root@iZ942077c78Z async-mysql-php]# php tests/performance_sync.php 
+------------------------------------------
+mark:[total diff]
+time:4.2648551464081s
+memory_real:18944KB
+memory_emalloc:18377.171875KB
+memory_peak_real:28416KB
+memory_peak_emalloc:27560.3828125KB
 [root@iZ942077c78Z async-mysql-php]# php tests/performance_sync.php 
 ------------------------------------------
 mark:[total diff]
@@ -45,6 +54,7 @@ memory_real:38144KB
 memory_emalloc:32574.015625KB
 memory_peak_real:66816KB
 memory_peak_emalloc:65709.7734375KB
+# 异步
 [root@iZ942077c78Z async-mysql-php]# php tests/performance_async.php 
 ------------------------------------------
 mark:[total diff]
