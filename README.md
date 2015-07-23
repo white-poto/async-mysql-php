@@ -22,3 +22,40 @@ try{
     echo $e->getMessage();
 }
 ```
+
+性能测试报告如下  
+-------------------------
+```shell
+[root@iZ942077c78Z async-mysql-php]# php tests/performance_sync.php 
+------------------------------------------
+mark:[total diff]
+time:4.2285549640656s
+memory_real:18944KB
+memory_emalloc:18377.171875KB
+memory_peak_real:28416KB
+memory_peak_emalloc:27560.3828125KB
+[root@iZ942077c78Z async-mysql-php]# php tests/performance_async.php  
+------------------------------------------
+mark:[total diff]
+time:1.455677986145s
+memory_real:38144KB
+memory_emalloc:32574.015625KB
+memory_peak_real:66816KB
+memory_peak_emalloc:65709.7734375KB
+[root@iZ942077c78Z async-mysql-php]# php tests/performance_async.php 
+------------------------------------------
+mark:[total diff]
+time:1.8936941623688s
+memory_real:38144KB
+memory_emalloc:32574.015625KB
+memory_peak_real:66816KB
+memory_peak_emalloc:65709.7734375KB
+[root@iZ942077c78Z async-mysql-php]# php tests/performance_async.php 
+------------------------------------------
+mark:[total diff]
+time:1.5208158493042s
+memory_real:38144KB
+memory_emalloc:32574.015625KB
+memory_peak_real:66816KB
+memory_peak_emalloc:65709.7734375KB
+```
