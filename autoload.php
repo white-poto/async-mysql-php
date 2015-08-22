@@ -12,6 +12,9 @@ spl_autoload_register(function($classname){
         $classname = $namespaces[count($namespaces) - 1];
         $file = dirname(__FILE__) . DIRECTORY_SEPARATOR
             . 'src' . DIRECTORY_SEPARATOR . $classname . '.php';
+        if(!file_exists($file)){
+            return;
+        }
 
         include $file;
     }
