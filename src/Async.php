@@ -11,8 +11,16 @@ namespace Jenner\Mysql;
 
 class Async
 {
+    /**
+     * mysql connection resource
+     * @var
+     */
     protected $links;
 
+    /**
+     * @param array $config mysql connection config
+     * @param string $query sql
+     */
     public function attach($config, $query)
     {
         $link = mysqli_connect(
@@ -31,6 +39,27 @@ class Async
         $this->links[] = $link;
     }
 
+    /**
+     * is done ?
+     * @return bool
+     */
+    public function isDone()
+    {
+        $links = $errors = $reject = array();
+        foreach ($this->links as $link) {
+            $links[] = $errors[] = $reject[] = $link;
+        }
+        if (!mysqli_poll($links, $errors, $reject, 0, 1000)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * get all result
+     * @return array
+     */
     public function execute()
     {
         $collect = array();
@@ -47,7 +76,7 @@ class Async
             }
             for ($i = 0; $i < $link_count; $i++) {
                 $link = $this->links[$i];
-                if(mysqli_errno($link)){
+                if (mysqli_errno($link)) {
                     throw new \RuntimeException(mysqli_error($link), mysqli_errno($link));
                 }
 
@@ -66,5 +95,23 @@ class Async
         } while ($processed < $link_count);
 
         return $collect;
+    }
+
+    /**
+     * close all connections
+     */
+    public function close()
+    {
+        foreach ($this->links as $link) {
+            mysqli_close($link);
+        }
+    }
+
+    /**
+     * destroy
+     */
+    public function __destory()
+    {
+        $this->close();
     }
 }
