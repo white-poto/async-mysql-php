@@ -41,15 +41,17 @@ class Async
 
     /**
      * is done ?
+     * @param int $seconds
+     * @param int $microseconds
      * @return bool
      */
-    public function isDone()
+    public function isDone($seconds = 0, $microseconds = 1000)
     {
         $links = $errors = $reject = array();
         foreach ($this->links as $link) {
             $links[] = $errors[] = $reject[] = $link;
         }
-        if (!mysqli_poll($links, $errors, $reject, 0, 1000)) {
+        if (!mysqli_poll($links, $errors, $reject, $seconds, $microseconds)) {
             return false;
         }
 
