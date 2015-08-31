@@ -7,6 +7,11 @@ mysql 异步客户端，基于mysqli::poll简单封装
 # Changes
 + 增加isDone()方法，用于无阻塞判断sql是否执行完成。1000微秒超时
 
+# 接口
++ attach()，递交异步mysql任务
++ isDone()，判断是否所有任务已经完成
++ execute()，获取所有任务的执行结果
+
 ## 注意事项
 执行attach()方法时，实际上程序已经将sql传递给了mysql执行；当执行execute方法时，实际上是轮询是否已经完成，等待所有sql执行完成后，合并结果返回。
 也就是说，在执行attach()方法与execute()之间，你可以做些其他事情，比如你还有一个HTTP的接口要访问，那么这期间你可以去执行HTTP请求，HTTP请求结束后，再去执行execute()方法。
