@@ -1,7 +1,7 @@
 async-mysql-php
 ================
 async mysql client  
-[中文文档](https://github.com/huyanping/async-mysql-php/blob/master/README.ZH.MD)
+[中文README](https://github.com/huyanping/async-mysql-php/blob/master/README.ZH.MD)  
 Doc：[async-mysql-php](http://www.huyanping.cn/php%E5%BC%82%E6%AD%A5%E5%B9%B6%E5%8F%91%E8%AE%BF%E9%97%AEmysql%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0/)
  
 Import
