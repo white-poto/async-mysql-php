@@ -9,11 +9,13 @@
 
 namespace Jenner\Mysql;
 
+use mysqli;
+
 class Async
 {
     /**
      * mysql connection resource
-     * @var
+     * @var mysqli[]
      */
     protected $links;
 
