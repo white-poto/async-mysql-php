@@ -24,7 +24,6 @@ Interface
 
 History
 -------------------
-+ 增加isDone()方法，用于无阻塞判断sql是否执行完成。1000微秒超时
 + add `isDone` method to check whether complete. it will check every thousand microsecond.
 
 
