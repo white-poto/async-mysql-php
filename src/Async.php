@@ -10,6 +10,7 @@
 namespace Jenner\Mysql;
 
 use mysqli;
+use React\Promise\Deferred;
 
 class Async
 {
@@ -17,11 +18,17 @@ class Async
      * mysql connection resource
      * @var mysqli[]
      */
-    protected $links;
+    protected $links = array();
+
+    /**
+     * @var Deferred[]
+     */
+    protected $deferred = array();
 
     /**
      * @param array $config mysql connection config
      * @param string $query sql
+     * @return \React\Promise\PromiseInterface
      */
     public function attach($config, $query)
     {
@@ -39,10 +46,15 @@ class Async
         $link->query($query, MYSQLI_ASYNC);
 
         $this->links[] = $link;
+        $deferred = new Deferred();
+        $this->deferred[] = $deferred;
+
+        return $deferred->promise();
     }
 
     /**
      * is done ?
+     *
      * @param int $seconds
      * @param int $microseconds
      * @return bool
@@ -61,10 +73,10 @@ class Async
     }
 
     /**
-     * get all result
+     * @param bool $return
      * @return array
      */
-    public function execute()
+    public function execute($return = false)
     {
         $collect = array();
 
@@ -80,25 +92,34 @@ class Async
             }
             for ($i = 0; $i < $link_count; $i++) {
                 $link = $this->links[$i];
+                $deferred = $this->deferred[$i];
                 if (mysqli_errno($link)) {
-                    throw new \RuntimeException(mysqli_error($link), mysqli_errno($link));
+                    if ($return) {
+                        throw new \RuntimeException(mysqli_error($link), mysqli_errno($link));
+                    } else {
+                        $deferred->reject(array('errno' => mysqli_errno($link), 'error' => mysqli_error($link)));
+                    }
                 }
 
                 if ($result = $link->reap_async_query()) {
                     if (is_object($result)) {
                         $temp = array();
                         while (($row = $result->fetch_assoc()) && $temp[] = $row) ;
-                        $collect[$i] = $temp;
+                        $return ? $collect[$i] = $temp : null;
+                        $deferred->resolve($temp);
                         mysqli_free_result($result);
                     } else {
-                        $collect[$i] = $result;
+                        $return ? $collect[$i] = $result : null;
+                        $deferred->resolve($result);
                     }
                 }
                 $processed++;
             }
         } while ($processed < $link_count);
 
-        return $collect;
+        if ($return) {
+            return $collect;
+        }
     }
 
     /**
