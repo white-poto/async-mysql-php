@@ -17,7 +17,7 @@ try {
     );
     $promise_1->then(
         function ($data) {
-            echo 'sucess:' . $data . PHP_EOL;
+            echo 'sucess:' . var_export($data, true) . PHP_EOL;
         },
         function ($info) {
             echo "error:" . var_export($info, true);
@@ -29,7 +29,7 @@ try {
     );
     $promise_2->then(
         function ($data) {
-            echo 'sucess:' . $data . PHP_EOL;
+            echo 'sucess:' . var_export($data, true) . PHP_EOL;
         },
         function ($info) {
             echo "error:" . var_export($info, true);
