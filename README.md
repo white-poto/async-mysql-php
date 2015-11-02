@@ -26,7 +26,6 @@ History
 -------------------
 + add `isDone` method to check whether complete. it will check every thousand microsecond.
 
-
 Notice
 -----------------
 The async object will send the request to when you call the `attach` method. 
