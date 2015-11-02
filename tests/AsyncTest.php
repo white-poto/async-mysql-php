@@ -23,7 +23,7 @@ class AsyncTest extends PHPUnit_Framework_TestCase
                 ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test', 'port'=>3306],
                 'select ID,NAME from async'
             );
-            $result = $async_mysql->execute();
+            $result = $async_mysql->execute(true);
 
             $sync_result = $temp_result = array();
             $mysql = mysqli_connect('127.0.0.1', 'root', '', 'test', 3306);
