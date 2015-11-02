@@ -15,6 +15,8 @@ Details
 + based on `mysqli::poll`   
 + throw `RuntimeException` when mysql connection or sql is error      
 + the return value's order is same to the order that you call `attach` method
++ every `attach` method will return a `Promise` object, you can call 
+`Process::then` method to defer the data processing.
 
 Interface
 ----------------
@@ -25,6 +27,7 @@ Interface
 History
 -------------------
 + add `isDone` method to check whether complete. it will check every thousand microsecond.
++ add `react/promise` package for asynchronous processing data.
 
 Notice
 -----------------
@@ -49,6 +52,40 @@ try{
     $result = $async_mysql->execute();
     print_r($result);
 }catch (Exception $e){
+    echo $e->getMessage();
+}
+```
+
+use promise:
+```php
+try {
+    $async_mysql = new \Jenner\Mysql\Async();
+    $promise_1 = $async_mysql->attach(
+        ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
+        'select * from stu'
+    );
+    $promise_1->then(
+        function ($data) {
+            echo 'sucess:' . var_export($data, true) . PHP_EOL;
+        },
+        function ($info) {
+            echo "error:" . var_export($info, true);
+        }
+    );
+    $promise_2 = $async_mysql->attach(
+        ['host' => '127.0.0.1', 'user' => 'root', 'password' => '', 'database' => 'test'],
+        'select * from stu limit 0, 3'
+    );
+    $promise_2->then(
+        function ($data) {
+            echo 'sucess:' . var_export($data, true) . PHP_EOL;
+        },
+        function ($info) {
+            echo "error:" . var_export($info, true);
+        }
+    );
+    $async_mysql->execute();
+} catch (Exception $e) {
     echo $e->getMessage();
 }
 ```
