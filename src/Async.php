@@ -98,6 +98,7 @@ class Async
                         throw new \RuntimeException(mysqli_error($link), mysqli_errno($link));
                     } else {
                         $deferred->reject(array('errno' => mysqli_errno($link), 'error' => mysqli_error($link)));
+                        continue;
                     }
                 }
 
