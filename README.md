@@ -1,4 +1,4 @@
-async-mysql-php
+async-mysql-php Great Project
 ================
 async mysql client  
 [中文README](https://github.com/huyanping/async-mysql-php/blob/master/README.ZH.MD)  
